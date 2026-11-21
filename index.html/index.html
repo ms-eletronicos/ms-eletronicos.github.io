@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MS Eletrônicos</title>
+<style>
+body{margin:0;font-family:Arial;background:#f5f5f5;padding-bottom:90px}
+.topo{text-align:center;padding:20px 15px}
+.btn{display:block;background:#25D366;color:#fff;text-align:center;padding:15px;margin:0 15px 20px;border-radius:12px;text-decoration:none;font-weight:bold;font-size:18px}
+.galeria{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 10px}
+.card{background:#fff;border-radius:12px;padding:15px;text-align:center}
+.card p{font-size:14px;font-weight:bold;min-height:36px}
+.card button{width:100%;padding:10px;border:0;border-radius:8px;background:#000;color:#fff;font-weight:bold}
+#carrinho{position:fixed;bottom:0;left:0;right:0;background:#000;color:#fff;padding:12px 15px;display:flex;justify-content:space-between;align-items:center}
+#carrinho button{background:#25D366;border:0;color:#fff;padding:10px 15px;border-radius:10px;font-weight:bold}
+</style>
+</head>
+<body>
+<div class="topo"><h1>MS Eletrônicos 📱</h1><p>Quissamã - RJ | Escolha e peça pelo WhatsApp</p></div>
+<a class="btn" href="https://wa.me/5522992788042?text=Oi!%20Quero%20fazer%20um%20pedido!">📱 Pedir pelo WhatsApp</a>
+<div class="galeria" id="galeria"></div>
+<div id="carrinho"><span id="qtd">🛒 Carrinho: 0 itens</span><button onclick="finalizar()">Finalizar no WhatsApp</button></div>
+<script>
+let nomes = {1:"Carregador veicular",2:"Fonte TV BOX",3:"Carregador de bateria",4:"Carregador rápido Tipo C",5:"Carregador turbo iPhone",6:"Carregador inteligente Tipo C",8:"Carregador rápido Tipo C preto",9:"Carregador rápido Tipo C Lelong",10:"Fonte de carregamento rápido",11:"Fonte de carregamento turbo",12:"Cabo de iPhone com suporte",13:"Cabo 4 em 1",14:"Cabo V8 preto",15:"Cabo Tipo C ou iPhone a'gold",16:"Cabo Tipo C preto Kridi",17:"Cabo Tipo C com cor Inova",18:"Cabo iPhone preto Kiveo",20:"Fone em fio",21:"Fone S10+ ou FO-11",22:"Adaptador OTG Tipo C",23:"Cabo OTG V8",24:"Adaptador iPhone - P2",25:"Bluetooth car",26:"Bomba elétrica p/ galão de água",27:"Máquina de cortar cabelo profissional",28:"Controle p/ TV BOX",29:"Suporte para celular",30:"Pisca pisca rosa",31:"Mixer",32:"Copo Stanley 150ml",33:"Batom mágico",34:"Raspadinha de brincos"};
+let carrinho = {};
+let galeria = document.getElementById('galeria');
+for(let i=1;i<=34;i++){
+  if(i===7 || i===19) continue;
+  let div = document.createElement('div'); div.className='card';
+  div.innerHTML = '<p>'+nomes[i]+'</p><button onclick="add('+i+')">Adicionar ao Carrinho</button>';
+  galeria.appendChild(div);
+}
+function add(id){
+  carrinho[id]=(carrinho[id]||0)+1;
+  let total=0; for(let k in carrinho) total+=carrinho[k];
+  document.getElementById('qtd').innerText='🛒 Carrinho: '+total+' itens';
+  alert('Adicionado! '+nomes[id]);
+}
+function finalizar(){
+  if(Object.keys(carrinho).length===0){alert('Seu carrinho está vazio!');return;}
+  let msg='Oi! Quero fazer um pedido:%0A';
+  for(let k in carrinho) msg+='%0A- '+nomes[k]+' (Qtd: '+carrinho[k]+')';
+  window.location.href='https://wa.me/5522992788042?text='+msg;
+}
+</script>
+</body>
+</html>
