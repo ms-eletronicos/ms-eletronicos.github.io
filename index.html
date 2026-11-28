@@ -56,7 +56,7 @@ function add(id){
 function finalizar(){
   if(Object.keys(carrinho).length===0){alert('Seu carrinho está vazio!');return;}
   let msg='Oi! Quero fazer um pedido:%0A';
-  for(let k in carrinho) msg+='%0A- '+nomes[k]+' (Qtd: '+carrinho[k]+') - Ver foto: https://SEU-SITE-AQUI/foto'+k+'.PNG';
+  for(let k in carrinho) msg+='%0A- '+nomes[k]+' (Qtd: '+carrinho[k]+') - Ver foto: https://ms-eletronicos.github.io/foto'+k+'.PNG';
   msg+='%0A%0AQual o valor total e a entrega?';
   window.location.href='https://wa.me/5522992788042?text='+msg;
 }
